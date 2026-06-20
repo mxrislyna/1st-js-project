@@ -29,36 +29,55 @@ function getHumanChoice() {
         }
 }
 
-let humanScore = 0;
-let computerScore = 0;
+
 
 function capitalize(word){
     if (!word) return "";
     return word.charAt(0).toUpperCase() + word.slice(1);
 }
 
-function playRound (humanChoice, computerChoice) {
+    function playGame(){
+        let humanScore = 0;
+        let computerScore = 0;
+        
+        function playRound (humanChoice, computerChoice) {  
 
-   if (humanChoice === computerChoice) {
-    return "The computer copied you! Try again!"; 
-   } else if (humanChoice === "rock" && computerChoice === "paper") {
-    computerScore += 1;
-    return "You lose! Paper beats Rock!";
-   } else if (humanChoice === "paper" && computerChoice === "scissors") {
-    computerScore += 1;
-    return "You lose! Scissors beats Paper!";
-   } else if (humanChoice === "scissors" && computerChoice === "rock") {
-    computerScore += 1;
-    return "You lose! Rock beats Scissors!"; 
-   } else {
-    humanScore += 1;
-    return `You Won! ${capitalize(humanChoice)} beats ${capitalize(computerChoice)}!`;
-   }
-}
+            if (humanChoice === computerChoice) {   
+            console.log("The computer copied you! Try again!");   
+        } else if (humanChoice === "rock" && computerChoice === "paper") {   
+            computerScore ++;   
+            console.log("You lose! Paper beats Rock!");   
+        } else if (humanChoice === "paper" && computerChoice === "scissors") {   
+            computerScore ++;   
+            console.log("You lose! Scissors beats Paper!");   
+        } else if (humanChoice === "scissors" && computerChoice === "rock") {    
+            computerScore ++;   
+            console.log("You lose! Rock beats Scissors!");    
+        } else { 
+            humanScore ++;  
+            console.log(`You Won! ${capitalize(humanChoice)} beats ${capitalize(computerChoice)}!`);  
+        }    
+        } 
+        
+        for (let i = 0; i < 5; i++) {
+            const humanSelection = getHumanChoice();
+            const computerSelection = getComputerChoice();
 
-const humanSelection = getHumanChoice();
-const computerSelection = getComputerChoice();
+            playRound(humanSelection, computerSelection);
+        }
 
-console.log(playRound(humanSelection, computerSelection));
-console.log(humanScore);
-console.log(computerScore);
+        if (humanScore > computerScore) {
+            console.log ("You won! Congratulations!");
+        } else if (humanScore < computerScore) {
+            console.log ("You lost the game!");
+        } else {
+            console.log ("It's a tie!")
+        }
+    }   
+
+playGame()
+
+
+
+
+
